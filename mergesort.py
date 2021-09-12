@@ -1,9 +1,8 @@
-import random
-
 def merge(A, aux, esquerda, meio, direita):
     """
     Combina dois vetores ordenados em um único vetor (também ordenado).
     """
+
     for k in range(esquerda, direita + 1):
         aux[k] = A[k]
     i = esquerda
@@ -27,7 +26,7 @@ def mergesort(A, aux, esquerda, direita):
     if direita <= esquerda:
         return
     meio = (esquerda + direita) // 2
-
+    print(A)
     # Ordena a primeira metade do arranjo.
     mergesort(A, aux, esquerda, meio)
 
@@ -38,9 +37,9 @@ def mergesort(A, aux, esquerda, direita):
     merge(A, aux, esquerda, meio, direita)
 
 
-# Testa o algoritmo.
-A = random.sample(range(-10, 10), 10)
-print("Arranjo não ordenado: ", A)
-aux = [0] * len(A)
-mergesort(A, aux, 0, len(A) - 1)
-print("Arranjo ordenado:", A)
+# # Testa o algoritmo.
+# A = random.sample(range(-10, 10), 10)
+# print("Arranjo não ordenado: ", A)
+# aux = [0] * len(A)
+# mergesort(A, aux, 0, len(A) - 1)
+# print("Arranjo ordenado:", A)
