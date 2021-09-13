@@ -1,50 +1,36 @@
-def heapsort(A, n):
-    # Primeiro estágio: construção do heap.
-    for i in range(2, n):
-        promove(A, i)
-
-    # Segundo estágio: construção da sequência ordenada.
-    for i in range(n, 1, -1):
-        A[1], A[i] = A[i], A[1]
-        demove(A, i - 1)
-
-def promove(A, n):
-    i = n
+def heapify(A, n, i):
     print(A)
-    while True:
-        # Elemento chegou na raiz da árvore.
-        if i == 1:
-            break
+    largest = i  # Initialize largest as root
+    l = 2 * i + 1  # left = 2*i + 1
+    r = 2 * i + 2  # right = 2*i + 2
 
-        # Elemento chegou na posição correta.
-        p = i // 2
-        if A[p] >= A[i]:
-            break
+    # See if left child of root exists and is
+    # greater than root
+    if l < n and A[i] < A[l]:
+        largest = l
 
-        # Troca elemento de lugar com o pai.
-        A[p], A[i] = A[i], A[p]
-        i = p
+        # See if right child of root exists and is
+    # greater than root
+    if r < n and A[largest] < A[r]:
+        largest = r
+
+        # Change root, if needed
+    if largest != i:
+        A[i], A[largest] = A[largest], A[i]  # swap
+
+        # Heapify the root.
+        heapify(A, n, largest)
+
+    # The main function to sort an array of given size
 
 
-def demove(A, n):
-    i = 1
-    print(A)
-    while True:
-        c = 2 * i
+def heapSort(A):
+    n = len(A)
 
-        # Elemento não tem mais filhos.
-        if c > n:
-            break
+    for i in range(n, -1, -1):
+        heapify(A, n, i)
 
-        # Encontra o índice do maior dos filhos.
-        if c + 1 <= n:
-            if A[c + 1] > A[c]:
-                c += 1
 
-        # O elemento é menor que seu maior filho.
-        if A[i] <= A[c]:
-            break
-
-        # Troca elemento de lugar com o maior filho.
-        A[c], A[i] = A[i], A[c]
-        i = c
+    for i in range(n - 1, 0, -1):
+        A[i], A[0] = A[0], A[i]  # swap
+        heapify(A, i, 0)

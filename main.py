@@ -1,6 +1,6 @@
 import random
 
-from heapsort import heapsort
+from heapsort import heapSort
 from insercao import ordenacao_insercao
 from mergesort import mergesort
 from quicksort import quicksort
@@ -34,7 +34,7 @@ print('\n\n\n')
 
 # HeapSort - AINDA NÃO FUNCIONAM
 print("Estado inicial dos vetores para HeapSort: ", D)
-heapsort(D, len(D) - 1)
+heapSort(D)
 print('Fim do algoritmo de HeapSort:', D)
 print('\n\n\n')
 
